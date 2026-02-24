@@ -19,9 +19,11 @@ export default function ResumeView() {
                     <div>•</div>
                     <div>+91 9325455913</div>
                     <div>•</div>
-                    <a href="https://linkedin.com/in/rishabhtripathi29" className="resume-contact-link" target="_blank" rel="noreferrer">LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/rishabh-tripathi-728a77317" className="resume-contact-link" target="_blank" rel="noreferrer">LinkedIn</a>
                     <div>•</div>
                     <a href="https://github.com/Rishabhworkspace" className="resume-contact-link" target="_blank" rel="noreferrer">GitHub</a>
+                    <div>•</div>
+                    <a href="https://www.instagram.com/rishabh_t106/" className="resume-contact-link" target="_blank" rel="noreferrer">Instagram</a>
                 </div>
             </div>
 

@@ -6,6 +6,7 @@ import SplitView from './components/SplitView';
 import StatusBar from './components/StatusBar';
 import CommandPalette from './components/CommandPalette';
 import BootSequence from './components/BootSequence';
+import { Sun, Moon } from 'lucide-react';
 import { FILES } from './data/files';
 
 function App() {
@@ -73,6 +74,15 @@ function App() {
           <div className="title-bar-dot green" />
         </div>
         <div className="title-bar-name">Rishabh Tripathi — Portfolio 2.0</div>
+        <div className="title-bar-actions">
+          <button
+            className="title-bar-action-btn"
+            onClick={() => setTheme(t => t === 'dark' ? 'light' : 'dark')}
+            title="Toggle Theme"
+          >
+            {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+          </button>
+        </div>
       </div>
 
       <div className="editor-body">

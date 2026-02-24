@@ -53,7 +53,8 @@ export default function WhoAmIView() {
             <div style={{ marginTop: 24, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                 {[
                     { label: 'GitHub', url: 'https://github.com/Rishabhworkspace', color: 'var(--accent-blue)' },
-                    { label: 'LinkedIn', url: 'https://linkedin.com/in/rishabhtripathi29', color: 'var(--accent-lavender)' },
+                    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/rishabh-tripathi-728a77317', color: 'var(--accent-lavender)' },
+                    { label: 'Instagram', url: 'https://www.instagram.com/rishabh_t106/', color: 'var(--accent-pink)' },
                     { label: 'Email', url: 'mailto:rishabh.j.tripathi2903@gmail.com', color: 'var(--accent-mint)' },
                 ].map(link => (
                     <a key={link.label} href={link.url} target="_blank" rel="noreferrer"

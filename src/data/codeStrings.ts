@@ -19,7 +19,8 @@ const WhoAmI = ({
   isAvailable = true,
   githubHandle = "Rishabhworkspace",
   email = "rishabh.j.tripathi2903@gmail.com",
-  linkedin = "linkedin.com/in/rishabhtripathi29",
+  linkedin = "www.linkedin.com/in/rishabh-tripathi-728a77317",
+  instagram = "www.instagram.com/rishabh_t106/",
 }) => {
   // I build digital products that refuse to be boring.
   const tagline = \`Merging artificial intelligence\n              with raw design.\`;
@@ -177,7 +178,8 @@ set -e
 RECIPIENT="Rishabh Tripathi"
 EMAIL="rishabh.j.tripathi2903@gmail.com"
 GITHUB="https://github.com/Rishabhworkspace"
-LINKEDIN="https://linkedin.com/in/rishabhtripathi29"
+LINKEDIN="https://www.linkedin.com/in/rishabh-tripathi-728a77317"
+INSTAGRAM="https://www.instagram.com/rishabh_t106/"
 PORTFOLIO="https://rishabhtripathi2903.vercel.app"
 
 # ── Check if open to work ─────────────────────
@@ -202,8 +204,9 @@ send_message() {
 
 # ── Open social links ─────────────────────────
 open_links() {
-  echo "GitHub  → $GITHUB"
-  echo "LinkedIn→ $LINKEDIN"
+  echo "GitHub    → $GITHUB"
+  echo "LinkedIn  → $LINKEDIN"
+  echo "Instagram → $INSTAGRAM"
   echo "Portfolio → $PORTFOLIO"
 }
 
