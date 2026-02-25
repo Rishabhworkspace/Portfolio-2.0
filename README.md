@@ -55,37 +55,6 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## Architecture
-
-This application is architected as a static Single Page Application (SPA).
-
-### Directory Structure
-
-\`\`\`
-├── public/                 # Static assets (images, PDFs)
-│   └── resume.pdf
-├── src/
-│   ├── components/         # Reusable UI components
-│   │   ├── CodePane.tsx    # Syntax-highlighted editor view
-│   │   ├── CommandPalette.tsx # Global search overlay
-│   │   ├── Sidebar.tsx     # File tree explorer
-│   │   ├── SplitView.tsx   # Resizable pane layout
-│   │   └── ThemeBar.tsx    # Theme selection ribbon
-│   ├── data/               # Mocks, constants, and content strings
-│   │   └── codeStrings.ts  # Source text for the CodePane simulation
-│   ├── views/              # Main page views (rendered in the preview pane)
-│   │   ├── ActivityView.tsx
-│   │   ├── ContactView.tsx
-│   │   ├── TerminalView.tsx
-│   │   └── ...
-│   ├── App.tsx             # Main entry point and layout shell
-│   ├── App.css             # Component-level styles
-│   ├── index.css           # Global design tokens and NeoBrutalist styles
-│   └── main.tsx            # React DOM root
-├── index.html              # HTML entry point
-├── package.json            # Dependencies and scripts
-└── vite.config.ts          # Vite bundler configuration
-\`\`\`
 
 ### Key Components
 
@@ -98,42 +67,9 @@ Relies heavily on CSS Custom Properties (`--bg-primary`, `--accent-primary`, etc
 **Command Palette (`CommandPalette.tsx`)**
 A globally mounted overlay triggered by `Cmd/Ctrl + Shift + P` or `Cmd/Ctrl + K`. Manges its own active state and utilizes `framer-motion` for depth, blur (`backdrop-filter`), and entry animations.
 
-## Environment Variables
 
-This project does not require any environment variables for local development or production usage. All content is statically served or managed via client-side routing.
-
-## Available Scripts
-
-| Command | Description |
-| :--- | :--- |
-| `npm run dev` | Start the local Vite development server with HMR. |
-| `npm run build` | Compile TypeScript (`tsc -b`) and bundle for production (`vite build`). |
-| `npm run preview` | Boot a local server to preview the production build. |
-| `npm run lint` | Run ESLint to analyze code for errors and formatting issues. |
 
 ## Deployment
 
 This static React app is extremely portable and can be deployed virtually anywhere. Vercel is highly recommended for zero-config deployments.
 
-### Vercel (Recommended)
-
-1. Push your code to a GitHub repository.
-2. Import the project into your Vercel Dashboard.
-3. Vercel will automatically detect Vite and configure the build settings (`npm run build` and `dist/`).
-4. Click **Deploy**.
-
-### Manual / VPS Deployment
-
-To deploy on a standard web server (like Nginx or Apache):
-
-1. Generate the static bundle:
-   \`\`\`bash
-   npm run build
-   \`\`\`
-2. The output will be placed in the `dist/` directory.
-3. Upload the contents of the `dist/` directory to your web server's public html directory.
-4. Ensure your server is configured to handle SPA routing (fallback all unmatched routes to `index.html`).
-
----
-
-*Written by Antigravity AI.*
