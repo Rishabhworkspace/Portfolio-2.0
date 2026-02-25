@@ -17,6 +17,7 @@ function App() {
   const [openFiles, setOpenFiles] = useState<FileId[]>(['whoami']);
   const [activeFile, setActiveFile] = useState<FileId>('whoami');
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const sidebarRef = useRef<PanelImperativeHandle>(null);
 
   // Keyboard shortcuts
@@ -94,7 +95,19 @@ function App() {
       <div className="editor-body">
         <Group orientation="horizontal" style={{ width: '100%', height: '100%' }}>
           {/* Sidebar Panel */}
-          <Panel panelRef={sidebarRef} defaultSize={220} minSize={150} maxSize={400} collapsible className="panel-sidebar">
+          <Panel
+            panelRef={sidebarRef}
+            defaultSize={220}
+            minSize={150}
+            maxSize={400}
+            collapsible
+            className="panel-sidebar"
+            onResize={() => {
+              if (sidebarRef.current) {
+                setIsSidebarCollapsed(sidebarRef.current.isCollapsed());
+              }
+            }}
+          >
             <Sidebar
               activeFile={activeFile}
               openFiles={openFiles}
@@ -113,6 +126,8 @@ function App() {
                 activeFile={activeFile}
                 onTabClick={setActiveFile}
                 onTabClose={handleTabClose}
+                isSidebarCollapsed={isSidebarCollapsed}
+                onExpandSidebar={() => sidebarRef.current?.expand()}
               />
               <SplitView
                 activeFile={activeFile}

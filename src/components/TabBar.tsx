@@ -1,4 +1,4 @@
-import { X } from 'lucide-react';
+import { X, PanelLeftOpen } from 'lucide-react';
 import type { FileId } from '../types';
 import { FILES } from '../data/files';
 
@@ -7,6 +7,8 @@ interface TabBarProps {
     activeFile: FileId;
     onTabClick: (id: FileId) => void;
     onTabClose: (id: FileId) => void;
+    isSidebarCollapsed?: boolean;
+    onExpandSidebar?: () => void;
 }
 
 const EXT_COLORS: Record<string, string> = {
@@ -18,11 +20,34 @@ const EXT_COLORS: Record<string, string> = {
     sh: '#4ade80',
 };
 
-export default function TabBar({ openFiles, activeFile, onTabClick, onTabClose }: TabBarProps) {
+export default function TabBar({ openFiles, activeFile, onTabClick, onTabClose, isSidebarCollapsed, onExpandSidebar }: TabBarProps) {
     const fileMap = Object.fromEntries(FILES.map(f => [f.id, f]));
 
     return (
         <div className="tab-bar">
+            {isSidebarCollapsed && (
+                <button
+                    onClick={onExpandSidebar}
+                    title="Expand Sidebar"
+                    style={{
+                        background: 'transparent',
+                        border: 'none',
+                        color: 'var(--text-muted)',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: '0 12px',
+                        height: '100%',
+                        opacity: 0.8,
+                        transition: 'opacity 0.2s',
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+                    onMouseLeave={(e) => e.currentTarget.style.opacity = '0.8'}
+                >
+                    <PanelLeftOpen size={16} />
+                </button>
+            )}
             {openFiles.map(id => {
                 const file = fileMap[id];
                 if (!file) return null;
