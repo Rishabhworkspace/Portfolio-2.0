@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { FileId, Theme } from './types';
 import Sidebar from './components/Sidebar';
 import TabBar from './components/TabBar';
@@ -6,6 +6,8 @@ import SplitView from './components/SplitView';
 import StatusBar from './components/StatusBar';
 import CommandPalette from './components/CommandPalette';
 import BootSequence from './components/BootSequence';
+import ThemeBar from './components/ThemeBar';
+import { Panel, Group, Separator, PanelImperativeHandle } from 'react-resizable-panels';
 import { Sun, Moon } from 'lucide-react';
 import { FILES } from './data/files';
 
@@ -15,18 +17,20 @@ function App() {
   const [openFiles, setOpenFiles] = useState<FileId[]>(['whoami']);
   const [activeFile, setActiveFile] = useState<FileId>('whoami');
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const sidebarRef = useRef<PanelImperativeHandle>(null);
 
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'p') {
+      // Ctrl + Shift + P for Command Palette
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === 'p') {
         e.preventDefault();
         setPaletteOpen(true);
       }
-      // Ctrl+K fallback for windows users used to discord/slack
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      // Ctrl + ` (backtick) for Terminal
+      if ((e.metaKey || e.ctrlKey) && e.key === '`') {
         e.preventDefault();
-        setPaletteOpen(true);
+        handleFileClick('terminal');
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -85,30 +89,42 @@ function App() {
         </div>
       </div>
 
+      <ThemeBar currentTheme={theme} onSetTheme={setTheme} />
+
       <div className="editor-body">
-        <Sidebar
-          activeFile={activeFile}
-          openFiles={openFiles}
-          onFileClick={handleFileClick}
-        />
-        <div className="editor-main">
-          <TabBar
-            openFiles={openFiles}
-            activeFile={activeFile}
-            onTabClick={setActiveFile}
-            onTabClose={handleTabClose}
-          />
-          <SplitView
-            activeFile={activeFile}
-            theme={theme}
-          />
-        </div>
+        <Group orientation="horizontal" style={{ width: '100%', height: '100%' }}>
+          {/* Sidebar Panel */}
+          <Panel panelRef={sidebarRef} defaultSize={220} minSize={150} maxSize={400} collapsible className="panel-sidebar">
+            <Sidebar
+              activeFile={activeFile}
+              openFiles={openFiles}
+              onFileClick={handleFileClick}
+              onCollapse={() => sidebarRef.current?.collapse()}
+            />
+          </Panel>
+
+          <Separator className="resize-handle" />
+
+          {/* Main Editor Panel */}
+          <Panel className="panel-main">
+            <div className="editor-main">
+              <TabBar
+                openFiles={openFiles}
+                activeFile={activeFile}
+                onTabClick={setActiveFile}
+                onTabClose={handleTabClose}
+              />
+              <SplitView
+                activeFile={activeFile}
+                theme={theme}
+              />
+            </div>
+          </Panel>
+        </Group>
       </div>
 
       <StatusBar
         activeFile={activeFile}
-        theme={theme}
-        onToggleTheme={() => setTheme(t => t === 'dark' ? 'light' : 'dark')}
         onOpenPalette={() => setPaletteOpen(true)}
       />
 
@@ -116,7 +132,6 @@ function App() {
         <CommandPalette
           onClose={() => setPaletteOpen(false)}
           onNavigate={handleFileClick}
-          onToggleTheme={() => setTheme(t => t === 'dark' ? 'light' : 'dark')}
         />
       )}
     </div>

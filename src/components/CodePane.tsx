@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { X } from 'lucide-react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark, atomOneLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import type { FileId, Theme } from '../types';
@@ -9,6 +10,7 @@ import {
 interface CodePaneProps {
     fileId: FileId;
     theme: Theme;
+    onClose?: () => void;
 }
 
 const FILE_CODE: Record<FileId, { code: string; lang: string }> = {
@@ -18,9 +20,10 @@ const FILE_CODE: Record<FileId, { code: string; lang: string }> = {
     activity: { code: ACTIVITY_CODE, lang: 'accesslog' },
     resume: { code: '// resume.pdf — opens in preview pane →', lang: 'javascript' },
     contact: { code: CONTACT_CODE, lang: 'bash' },
+    terminal: { code: '// Terminal Logic:\n// Process spawned locally.\n// Output mapped to View.\n\nwhile (true) {\n  const cmd = await stdin();\n  execute(cmd);\n}', lang: 'javascript' },
 };
 
-export default function CodePane({ fileId, theme }: CodePaneProps) {
+export default function CodePane({ fileId, theme, onClose }: CodePaneProps) {
     const { code, lang } = FILE_CODE[fileId];
     const lines = code.split('\n');
     const hlStyle = theme === 'dark' ? atomOneDark : atomOneLight;
@@ -37,7 +40,20 @@ export default function CodePane({ fileId, theme }: CodePaneProps) {
         <div className="code-pane">
             <div className="pane-header">
                 <span>source</span>
-                <span style={{ color: 'var(--accent-blue)', fontSize: 9 }}>READ ONLY</span>
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                    <span style={{ color: 'var(--accent-blue)', fontSize: 9 }}>READ ONLY</span>
+                    {onClose && (
+                        <button
+                            onClick={onClose}
+                            title="Close Code Pane"
+                            style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', display: 'flex', alignItems: 'center', opacity: 0.6 }}
+                            onMouseOver={e => e.currentTarget.style.opacity = '1'}
+                            onMouseOut={e => e.currentTarget.style.opacity = '0.6'}
+                        >
+                            <X size={13} />
+                        </button>
+                    )}
+                </div>
             </div>
             <div className="code-display">
                 {/* Line numbers */}

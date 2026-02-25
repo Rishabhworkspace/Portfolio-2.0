@@ -75,7 +75,7 @@ export default function ResumeView() {
             </div>
 
             <div className="resume-download-bar">
-                <a href="/Rishabh_Tripathi_Resume.pdf" download className="download-btn">
+                <a href="/resume.pdf" download className="download-btn">
                     <Download size={14} /> Download Final PDF
                 </a>
             </div>

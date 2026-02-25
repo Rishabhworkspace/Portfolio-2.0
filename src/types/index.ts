@@ -1,4 +1,4 @@
-export type FileId = 'whoami' | 'featured' | 'stack' | 'activity' | 'resume' | 'contact';
+export type FileId = 'whoami' | 'featured' | 'stack' | 'activity' | 'resume' | 'contact' | 'terminal';
 
 export interface PortfolioFile {
   id: FileId;
@@ -37,4 +37,4 @@ export interface GitHubEvent {
   };
 }
 
-export type Theme = 'dark' | 'light';
+export type Theme = 'dark' | 'light' | 'dracula' | 'tokyo-night' | 'monokai' | 'nord' | 'gruvbox' | 'synthwave';

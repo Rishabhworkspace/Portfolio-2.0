@@ -2,13 +2,11 @@ import { motion } from 'framer-motion';
 
 export default function ActivityView() {
     const journeyLog = [
-        { year: 2026, text: 'Building AlgoForge 2.0 and FoodNest. Always shipping.', type: 'commit' },
-        { year: 2025, text: 'Participated in Smart India Hackathon. Built MindCare in 36h.', type: 'push' },
-        { year: 2024, text: 'Started B.Tech CSE (AI + Robotics) at VIT Chennai.', type: 'create' },
-        { year: 2023, text: 'Full-stack mode: Next.js, Node.js, MongoDB.', type: 'commit' },
-        { year: 2022, text: 'React clicked. Never looked back.', type: 'push' },
-        { year: 2021, text: 'Discovered web dev. Shipped first landing page.', type: 'create' },
-        { year: 2018, text: 'Started coding. Wrote first lines in C & C++.', type: 'other' },
+        { year: 'NOW', text: 'Building AlgoForge 2.0 & ViTravelBuddy (AI). Always shipping.', type: 'commit' },
+        { year: '2024', text: 'Participated in Smart India Hackathon. Built MindCare in 36h.', type: 'push' },
+        { year: 'MID 2024', text: 'Full-stack mode unlocked: Next.js, Node.js, MongoDB.', type: 'commit' },
+        { year: 'EARLY 2024', text: 'Learned HTML/CSS/JS from scratch. Built first sites.', type: 'push' },
+        { year: '2023', text: 'Wrote first lines of code in C & C++.', type: 'other' },
     ];
 
     return (

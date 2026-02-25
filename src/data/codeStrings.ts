@@ -158,13 +158,11 @@ export const ACTIVITY_CODE = `[INFO]  2026-02-24 16:49 IST  Portfolio 2.0 initia
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  JOURNEY LOG
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[2018]  Started with C & C++ — fell in love with logic
-[2021]  Discovered the web — first static site shipped
-[2022]  React clicked. Never looked back.
-[2023]  Full-stack mode: Next.js, Node, MongoDB
-[2024]  VIT Chennai · B.Tech CSE (AI+Robotics) started
-[2025]  SIH Hackathon — built MindCare in 36 hours
-[2026]  AlgoForge 2.0, FoodNest — always shipping
+[2023]      Started with C & C++ — fell in love with logic
+[EARLY-24]  Discovered the web — learned HTML/CSS/JS
+[MID-24]    Full-stack mode: Next.js, Node, MongoDB, Supabase
+[LATE-24]   Smart India Hackathon — built MindCare
+[NOW]       AlgoForge 2.0, ViTravelBuddy, FoodNest — always shipping
 
 [INFO]  Status: ● Online — midnight coder, perpetual builder`;
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Folder, FolderOpen } from 'lucide-react';
+import { Folder, FolderOpen, PanelLeftClose } from 'lucide-react';
 import type { FileId } from '../types';
 import { FILES } from '../data/files';
 
@@ -7,6 +7,7 @@ interface SidebarProps {
     activeFile: FileId;
     openFiles: FileId[];
     onFileClick: (id: FileId) => void;
+    onCollapse: () => void;
 }
 
 const EXT_ICONS: Record<string, string> = {
@@ -27,7 +28,7 @@ const EXT_COLORS: Record<string, string> = {
     sh: 'ext-sh',
 };
 
-export default function Sidebar({ activeFile, openFiles, onFileClick }: SidebarProps) {
+export default function Sidebar({ activeFile, openFiles, onFileClick, onCollapse }: SidebarProps) {
     const [projectsOpen, setProjectsOpen] = useState(true);
 
     const rootFiles = FILES.filter(f => !f.folder);
@@ -35,7 +36,16 @@ export default function Sidebar({ activeFile, openFiles, onFileClick }: SidebarP
 
     return (
         <aside className="sidebar">
-            <div className="sidebar-header">Explorer</div>
+            <div className="sidebar-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span>Explorer</span>
+                <button
+                    onClick={onCollapse}
+                    title="Collapse Sidebar"
+                    style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', display: 'flex', alignItems: 'center', opacity: 0.8 }}
+                >
+                    <PanelLeftClose size={13} />
+                </button>
+            </div>
             <div className="sidebar-tree">
 
                 {/* Root: portfolio/ */}

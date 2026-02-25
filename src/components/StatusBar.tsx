@@ -1,17 +1,15 @@
 import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
-import { Sun, Moon, MapPin, Clock } from 'lucide-react';
-import type { FileId, Theme } from '../types';
+import { MapPin, Clock } from 'lucide-react';
+import type { FileId } from '../types';
 import { FILES } from '../data/files';
 
 interface StatusBarProps {
     activeFile: FileId;
-    theme: Theme;
-    onToggleTheme: () => void;
     onOpenPalette: () => void;
 }
 
-export default function StatusBar({ activeFile, theme, onToggleTheme, onOpenPalette }: StatusBarProps) {
+export default function StatusBar({ activeFile, onOpenPalette }: StatusBarProps) {
     const [time, setTime] = useState(new Date());
 
     useEffect(() => {
@@ -66,8 +64,8 @@ export default function StatusBar({ activeFile, theme, onToggleTheme, onOpenPale
                 </span>
 
                 {/* Theme Toggle */}
-                <button className="theme-toggle" onClick={onToggleTheme} title="Toggle Theme">
-                    {theme === 'dark' ? <Sun size={11} /> : <Moon size={11} />}
+                <button className="theme-toggle" onClick={onOpenPalette} title="Change Theme (Cmd+K)">
+                    <span style={{ fontSize: 11, fontFamily: 'inherit', fontWeight: 600 }}>THEME</span>
                 </button>
             </div>
         </div>

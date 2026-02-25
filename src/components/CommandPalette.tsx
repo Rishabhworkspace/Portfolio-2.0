@@ -6,7 +6,6 @@ import type { FileId } from '../types';
 interface CommandPaletteProps {
     onClose: () => void;
     onNavigate: (id: FileId) => void;
-    onToggleTheme: () => void;
 }
 
 interface Command {
@@ -17,7 +16,7 @@ interface Command {
     action: () => void;
 }
 
-export default function CommandPalette({ onClose, onNavigate, onToggleTheme }: CommandPaletteProps) {
+export default function CommandPalette({ onClose, onNavigate }: CommandPaletteProps) {
     const [query, setQuery] = useState('');
     const [focused, setFocused] = useState(0);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -27,15 +26,9 @@ export default function CommandPalette({ onClose, onNavigate, onToggleTheme }: C
         { id: 'featured', label: '> Open: featured.json', hint: 'Projects', icon: <FileCode size={14} />, action: () => { onNavigate('featured'); onClose(); } },
         { id: 'stack', label: '> Open: stack.css', hint: 'Skills', icon: <FileCode size={14} />, action: () => { onNavigate('stack'); onClose(); } },
         { id: 'activity', label: '> Open: activity.log', hint: 'GitHub Activity', icon: <BarChart2 size={14} />, action: () => { onNavigate('activity'); onClose(); } },
+        { id: 'terminal', label: '> Open: terminal.exe', hint: 'Interactive', icon: <Terminal size={14} />, action: () => { onNavigate('terminal'); onClose(); } },
         { id: 'resume', label: '> Download Resume', hint: 'resume.pdf', icon: <Download size={14} />, action: () => { onNavigate('resume'); onClose(); } },
-        { id: 'contact', label: '> Hire Me', hint: 'contact.sh', icon: <Terminal size={14} />, action: () => { onNavigate('contact'); onClose(); } },
-        {
-            id: 'theme',
-            label: '> Toggle: Theme',
-            hint: 'Dark / Light',
-            icon: <span style={{ fontSize: 13 }}>◑</span>,
-            action: () => { onToggleTheme(); onClose(); }
-        },
+        { id: 'contact', label: '> Hire Me', hint: 'contact.sh', icon: <FileCode size={14} />, action: () => { onNavigate('contact'); onClose(); } },
         {
             id: 'email',
             label: '> Send Email',

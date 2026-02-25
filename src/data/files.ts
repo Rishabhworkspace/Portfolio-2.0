@@ -44,6 +44,13 @@ export const FILES: PortfolioFile[] = [
         icon: '🖥️',
         language: 'Shell',
     },
+    {
+        id: 'terminal',
+        name: 'terminal.exe',
+        extension: 'exe',
+        icon: '💻',
+        language: 'Terminal',
+    }
 ];
 
 export const SIDEBAR_STRUCTURE = {
@@ -61,5 +68,6 @@ export const SIDEBAR_STRUCTURE = {
         { type: 'file', id: 'activity' },
         { type: 'file', id: 'resume' },
         { type: 'file', id: 'contact' },
+        { type: 'file', id: 'terminal' },
     ],
 };
